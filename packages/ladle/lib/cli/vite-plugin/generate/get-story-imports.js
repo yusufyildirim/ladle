@@ -9,7 +9,7 @@ import cleanupWindowsPath from "./cleanup-windows-path.js";
  */
 const getStoryImports = (entryData) => {
   let storyImports = `import { lazy, createElement, Fragment } from "react";\n`;
-  storyImports += `import composeEnhancers from "/src/compose-enhancers";\n`;
+  storyImports += `import composeEnhancers from "./src/compose-enhancers";\n`;
   const lazyImport = template(`
     const %%component%% = lazy(() =>
      import(%%source%%).then((module) => {

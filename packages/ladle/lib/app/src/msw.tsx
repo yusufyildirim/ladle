@@ -19,7 +19,7 @@ const Msw = ({
           window.__ladle_msw
             .start({
               serviceWorker: {
-                url: `${(import.meta as any).env.BASE_URL}mockServiceWorker.js`,
+                url: "mockServiceWorker.js", //`${(import.meta as any).env.BASE_URL}mockServiceWorker.js`,
               },
             })
             .then(() => {
