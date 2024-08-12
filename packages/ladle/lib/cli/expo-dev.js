@@ -2,6 +2,7 @@ import http from "http";
 import c2k from "koa-connect";
 import fs from "fs";
 import { parse } from "url";
+import { Buffer } from "buffer";
 
 import { runServer } from "./runServer-fork.js";
 import getPort from "get-port";
@@ -16,7 +17,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import getAppRoot from "./get-app-root.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
-import getGeneratedList from "./vite-plugin/generate/get-generated-list.js";
+import {
+  getGeneratedList,
+  getConfig,
+} from "./vite-plugin/generate/get-generated-list.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -34,12 +38,31 @@ const generateStories = async (storiesFilePath, config, configFolder) => {
   fs.writeFileSync(storiesFilePath, entryList);
 };
 
+const getlistModuleContent = async (storiesFilePath, config, configFolder) => {
+  const entryData = await getEntryData(
+    await globby(
+      Array.isArray(config.stories) ? config.stories : [config.stories],
+    ),
+  );
+  return getGeneratedList(entryData, configFolder, config);
+};
+
+const getConfigContent = async (storiesFilePath, config, configFolder) => {
+  const entryData = await getEntryData(
+    await globby(
+      Array.isArray(config.stories) ? config.stories : [config.stories],
+    ),
+  );
+  return getConfig(entryData, configFolder, config);
+};
+
 const bundler = async (config, configFolder) => {
   const appRoot = getAppRoot();
   const projectRoot = process.cwd();
 
-  const storiesFilePath = path.resolve(appRoot, "./stories.js");
-  const st = generateStories(storiesFilePath, config, configFolder);
+  const listModuleFilePath = path.resolve(appRoot, "./stories.js");
+  const configModulePath = path.resolve(appRoot, "./config.js");
+  // const st = generateStories(listModuleFilePath, config, configFolder);
 
   const metroPath = resolveFrom(projectRoot, "metro");
   const Metro = await import(metroPath);
@@ -82,8 +105,8 @@ const bundler = async (config, configFolder) => {
   //   fileSystem.__patched = true;
   // }
 
-  const virtualModuleName = "virtual:generated-list";
-  const virtualModuleId = `\0${virtualModuleName}`;
+  const listModuleName = "virtual:generated-list";
+  const configModuleName = "virtual:config";
 
   const reactNativePath = resolveFrom(projectRoot, "react-native");
   const userMetroConfig = await Metro.loadConfig();
@@ -135,7 +158,7 @@ const bundler = async (config, configFolder) => {
     resolver: {
       ...(userMetroConfig.resolver || {}),
       resolveRequest(context, moduleName, platform) {
-        if (moduleName === virtualModuleName) {
+        if (moduleName === listModuleName) {
           // ensureFileSystemPatched(bundler._depGraph._fileSystem);
 
           // return {
@@ -144,7 +167,12 @@ const bundler = async (config, configFolder) => {
           // };
 
           return {
-            filePath: storiesFilePath,
+            filePath: listModuleFilePath,
+            type: "sourceFile",
+          };
+        } else if (moduleName === configModuleName) {
+          return {
+            filePath: configModulePath,
             type: "sourceFile",
           };
         }
@@ -164,9 +192,16 @@ const bundler = async (config, configFolder) => {
 
   const originalTransformFile = bundler.transformFile.bind(bundler);
   bundler.transformFile = async (filePath, transformOptions, fileBuffer) => {
-    if (!fileBuffer && filePath.startsWith("\0")) {
-      console.log("this is a virtual module", filePath);
-      fileBuffer = fs.readFileSync(storiesFilePath);
+    if (!fileBuffer) {
+      if (filePath === listModuleFilePath) {
+        fileBuffer = Buffer.from(
+          await getlistModuleContent(listModuleFilePath, config, configFolder),
+        );
+      } else if (filePath === configModulePath) {
+        fileBuffer = Buffer.from(
+          await getConfigContent(listModuleFilePath, config, configFolder),
+        );
+      }
     }
     // console.log("lets gooo", filePath, fileBuffer);
     return originalTransformFile(filePath, transformOptions, fileBuffer);

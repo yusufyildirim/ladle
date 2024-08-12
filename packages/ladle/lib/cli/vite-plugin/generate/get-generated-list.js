@@ -9,15 +9,23 @@ import getComponentsImport from "./get-components-import.js";
  * @param configFolder {string}
  * @param config {import("../../../shared/types").Config}
  */
-const getGeneratedList = async (entryData, configFolder, config) => {
+export const getGeneratedList = async (entryData, configFolder, config) => {
   return `
 ${getStoryImports(entryData)}
 ${getStoryList(entryData)}
-${await getConfigImport(configFolder, config)}
 ${getComponentsImport(configFolder)}
 ${getStorySource(entryData, config.addons.source.enabled)}
 export const errorMessage = '';\n
 `;
 };
 
-export default getGeneratedList;
+/**
+ * @param entryData {import('../../../shared/types').EntryData}
+ * @param configFolder {string}
+ * @param config {import("../../../shared/types").Config}
+ */
+export const getConfig = async (entryData, configFolder, config) => {
+  return `
+${await getConfigImport(configFolder, config)}
+`;
+};

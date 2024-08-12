@@ -6,6 +6,7 @@
   "license": "MIT",
   "type": "module",
   "types": "./lib/app/exports.ts",
+  "main": "./lib/app/exports.ts",
   "exports": {
     ".": "./lib/app/exports.ts",
     "./serve": "./api/serve.js",

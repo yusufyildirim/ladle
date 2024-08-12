@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 import debugFactory from "debug";
 import getAppRoot from "../get-app-root.js";
-import getGeneratedList from "./generate/get-generated-list.js";
+import { getGeneratedList } from "./generate/get-generated-list.js";
 import { getEntryData } from "./parse/get-entry-data.js";
 import { detectDuplicateStoryNames, printError } from "./utils.js";
 import cleanupWindowsPath from "./generate/cleanup-windows-path.js";
