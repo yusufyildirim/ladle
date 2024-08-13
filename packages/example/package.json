@@ -13,7 +13,6 @@
     "@expo/metro-runtime": "^3.2.1",
     "@ladle/react": "workspace:*",
     "expo": "^51.0.25",
-    "expo-crypto": "^13.0.2",
     "metro-runtime": "^0.80.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
