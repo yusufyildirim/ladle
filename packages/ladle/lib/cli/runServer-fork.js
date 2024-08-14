@@ -42,7 +42,6 @@ export const runServer = async (
   //       "Metro's https development server.",
   //   );
   // }
-  // Lazy require
 
   const serverApp = connect();
 
