@@ -14,8 +14,7 @@ export const getQuery = (locationSearch: string) => {
     case ThemeState.Auto:
       return ThemeState.Auto;
     default:
-      return "";
-    //return (import.meta as any).env.VITE_PUBLIC_LADLE_THEME as ThemeState;
+      return (global as any).env.VITE_PUBLIC_LADLE_THEME as ThemeState;
   }
 };
 

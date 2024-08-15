@@ -2,7 +2,6 @@ import fs from "fs";
 import { parse } from "url";
 import { Buffer } from "buffer";
 import path from "path";
-import { fileURLToPath } from "url";
 import getPort from "get-port";
 
 import { runServer } from "./runServer-fork.js";
@@ -10,8 +9,12 @@ import openBrowser from "./open-browser.js";
 import { getBaseMetroConfig } from "./metro-base.js";
 import { getVirtualModuleByPath } from "./metro-virtual-mods.js";
 import { createHTMLTemplate } from "./metro/prepare-assets.js";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { globby } from "globby";
+import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
+import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
+import { appRoot, projectPublicDir, projectRoot } from "./metro/utils.js";
+import importFrom from "import-from";
+const express = importFrom(projectRoot, "express");
 
 /**
  * @param ladleConfig {import("../shared/types").Config}
@@ -24,17 +27,31 @@ const bundler = async (ladleConfig, configFolder) => {
    * @param {import('express').Response} res - The Express response object.
    * @param {import('express').NextFunction} next - The Express next middleware function.
    */
-  function indexPageMiddleware(req, res, next) {
+  async function ladleMiddleware(req, res, next) {
     const url = parse(req.url, true);
     const platformParam = url.query?.platform;
 
     const isBundlerRequest = platformParam === "web";
     const isAssetRequest = req.url === "/assets/ladle.css";
+    const isMetaFile = req.url === "/meta.json";
 
     if (isBundlerRequest) return next();
-    if (isAssetRequest) {
+    if (isMetaFile) {
+      const entryData = await getEntryData(
+        await globby(
+          Array.isArray(ladleConfig.stories)
+            ? ladleConfig.stories
+            : [ladleConfig.stories],
+        ),
+      );
+      const meta = getMetaJsonString(entryData);
+
+      res.setHeader("Content-Type", "text/json");
+      res.end(meta);
+      return;
+    } else if (isAssetRequest) {
       res.setHeader("Content-Type", "text/css");
-      res.end(fs.readFileSync(path.join(__dirname, "../app/ladle.css")));
+      res.end(fs.readFileSync(path.join(appRoot, "ladle.css")));
       return;
     }
 
@@ -57,10 +74,16 @@ const bundler = async (ladleConfig, configFolder) => {
   const hostname = ladleConfig.host ?? "localhost";
   const serverUrl = `${useHttps ? "https" : "http"}://${hostname}:${port}`;
 
-  const metroConfig = await getBaseMetroConfig(port);
-  const { metroServer } = await runServer(metroConfig, {
+  const metroConfig = await getBaseMetroConfig(port, ladleConfig);
+  const { metroServer, httpServer } = await runServer(metroConfig, {
     host: hostname,
-    unstable_extraMiddleware: [indexPageMiddleware],
+    unstable_extraMiddleware: [
+      // Serve static assets from project's /public dir
+      express.static(projectPublicDir),
+
+      // Serve Ladle specific stuff
+      ladleMiddleware,
+    ],
     watch: !process.env.LADLE_BUILD,
   });
 

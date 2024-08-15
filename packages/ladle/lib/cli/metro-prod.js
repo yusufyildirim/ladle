@@ -34,26 +34,15 @@ function prepareOutDir() {
 const metroProd = async (ladleConfig, configFolder) => {
   try {
     // Prepare the build folder
-    const htmlFile = path.resolve(appRoot, "./index.html");
     const cssFile = path.resolve(appRoot, "./ladle.css");
 
     // Make sure the out dir is cleaned and ready.
     prepareOutDir();
 
-    // const metroConfig = await getBaseMetroConfig();
     const onProgress = (...args) => {
       // console.log("Progress...", args);
     };
 
-    // const build = await Metro.runBuild(metroConfig, {
-    //   // entry: "./node_modules/@ladle/react/lib/app/src/index.tsx",
-    //   entry: path.relative(projectRoot, entryFilePath),
-    //   dev: false,
-    //   minify: false,
-    //   platform: "web",
-    //   out: path.resolve(assetsDir, "ladle.js"),
-    //   onProgress,
-    // });
     const sourceMap = false;
 
     const { metroServer } = await metroDev(ladleConfig, configFolder);

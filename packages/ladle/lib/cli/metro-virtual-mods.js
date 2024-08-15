@@ -48,6 +48,16 @@ export const virtualModules = {
     path: path.resolve(appRoot, "./config.js"),
     getContent: getConfigModuleContent,
   },
+  "virtual:inject-env-vars": {
+    path: path.resolve(appRoot, "./env.js"),
+    getContent: () => `
+global.env = {
+  BASE_URL: ${process.env.BASE_URL && `"${process.env.BASE_URL}"`},
+  VITE_LADLE_APP_ID: "${process.env.VITE_LADLE_APP_ID}",
+  VITE_PUBLIC_LADLE_THEME: "${process.env.VITE_PUBLIC_LADLE_THEME}",
+}
+`,
+  },
 };
 export const virtualModulesByPath = Object.entries(virtualModules).reduce(
   (acc, [key, module]) => {

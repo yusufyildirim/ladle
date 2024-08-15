@@ -3,6 +3,8 @@ import path from "path";
 import resolveFrom from "resolve-from";
 import { getVirtualModuleByName } from "./metro-virtual-mods.js";
 import { fileURLToPath } from "url";
+import copyMswWorker from "./copy-msw-worker.js";
+import { projectPublicDir } from "./metro/utils.js";
 
 const projectRoot = process.cwd();
 const Metro = importFrom(projectRoot, "metro");
@@ -13,7 +15,9 @@ export const entryFilePath = path.join(__dirname, "../app/src/index.tsx");
 /**
  * @param {number | undefined} [port]
  */
-export async function getBaseMetroConfig(port) {
+export async function getBaseMetroConfig(port, ladleConfig) {
+  process.env["BASE_URL"] = process.env["BASE_URL"] || "/";
+
   const reactNativePath = resolveFrom(projectRoot, "react-native");
   const userMetroConfig = await Metro.loadConfig();
 
@@ -32,6 +36,10 @@ export async function getBaseMetroConfig(port) {
       ];
     },
   };
+
+  if (ladleConfig.addons.msw.enabled) {
+    copyMswWorker(projectPublicDir);
+  }
 
   return {
     ...userMetroConfig,

@@ -5,16 +5,10 @@
   "author": "Vojtech Miksu <vojtech@miksu.cz>",
   "license": "MIT",
   "type": "module",
-  "types": "./typings-for-build/app/exports.d.ts",
+  "types": "./lib/app/exports.d.ts",
   "main": "./lib/app/exports.ts",
   "exports": {
-    ".": {
-      "types": {
-        "import": "./typings-for-build/app/exports.d.ts",
-        "require": "./typings-for-build/app/exports.d.cts"
-      },
-      "default": "./lib/app/exports.ts"
-    },
+    ".": "./lib/app/exports.ts",
     "./serve": "./api/serve.js",
     "./preview": "./api/preview.js",
     "./build": "./api/build.js",
@@ -23,7 +17,8 @@
   },
   "packageManager": "pnpm@9.1.4",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "files": [
     "lib",
@@ -111,3 +106,4 @@
     "node": ">=20.0.0"
   }
 }
+
