@@ -4,13 +4,13 @@ import path from "path";
 import { promises as fs } from "fs";
 import { performance } from "perf_hooks";
 import { globby } from "globby";
-import viteProd from "./vite-prod.js";
 import debug from "./debug.js";
 import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import getFolderSize from "./get-folder-size.js";
 import applyCLIConfig from "./apply-cli-config.js";
 import getAppId from "./get-app-id.js";
+import metroProd from "./metro-prod.js";
 
 /**
  * @param params {import("../shared/types").CLIParams}
@@ -19,8 +19,9 @@ const build = async (params = {}) => {
   const startTime = performance.now();
   debug("Starting build command");
   process.env["VITE_LADLE_APP_ID"] = getAppId();
+  process.env["LADLE_BUILD"] = "true";
   const { configFolder, config } = await applyCLIConfig(params);
-  await viteProd(config, configFolder);
+  await metroProd(config, configFolder);
   const entryData = await getEntryData(
     await globby(
       Array.isArray(config.stories) ? config.stories : [config.stories],

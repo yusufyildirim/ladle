@@ -9,6 +9,7 @@ import { runServer } from "./runServer-fork.js";
 import openBrowser from "./open-browser.js";
 import { getBaseMetroConfig } from "./metro-base.js";
 import { getVirtualModuleByPath } from "./metro-virtual-mods.js";
+import { createHTMLTemplate } from "./metro/prepare-assets.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,18 +29,23 @@ const bundler = async (ladleConfig, configFolder) => {
     const platformParam = url.query?.platform;
 
     const isBundlerRequest = platformParam === "web";
-    const isAssetRequest = req.url === "/ladle.css";
+    const isAssetRequest = req.url === "/assets/ladle.css";
 
     if (isBundlerRequest) return next();
     if (isAssetRequest) {
       res.setHeader("Content-Type", "text/css");
       res.end(fs.readFileSync(path.join(__dirname, "../app/ladle.css")));
-      return next();
+      return;
     }
 
     // Serve HTML
+    const html = createHTMLTemplate({
+      assets: [{ type: "css", filename: "assets/ladle.css" }],
+      bundleUrl:
+        "node_modules/@ladle/react/lib/app/src/index.bundle?platform=web&amp;dev=true&amp;hot=false&amp;lazy=true&amp;transform.engine=hermes&amp;transform.routerRoot=app",
+    });
     res.setHeader("Content-Type", "text/html");
-    res.end(fs.readFileSync(path.join(__dirname, "../app/index.html")));
+    res.end(html);
     return next();
   }
 
@@ -55,9 +61,12 @@ const bundler = async (ladleConfig, configFolder) => {
   const { metroServer } = await runServer(metroConfig, {
     host: hostname,
     unstable_extraMiddleware: [indexPageMiddleware],
+    watch: !process.env.LADLE_BUILD,
   });
 
-  openBrowser(serverUrl);
+  if (!process.env.LADLE_BUILD) {
+    openBrowser(serverUrl);
+  }
 
   const metroBundler = metroServer.getBundler().getBundler();
   const originalTransformFile = metroBundler.transformFile.bind(metroBundler);
@@ -71,19 +80,21 @@ const bundler = async (ladleConfig, configFolder) => {
     transformOptions,
     fileBuffer,
   ) => {
+    // TODO: Add comment
     if (!fileBuffer) {
       if (getVirtualModuleByPath(filePath)) {
         const code = await getVirtualModuleByPath(filePath).getContent(
           ladleConfig,
           configFolder,
         );
-        console.log(code);
         fileBuffer = Buffer.from(code);
       }
     }
 
     return originalTransformFile(filePath, transformOptions, fileBuffer);
   };
+
+  return { metroServer, metroBundler };
 };
 
 export default bundler;

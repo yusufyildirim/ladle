@@ -53,7 +53,6 @@ export async function getBaseMetroConfig(port) {
        */
       resolveRequest(context, moduleName, platform) {
         if (getVirtualModuleByName(moduleName)) {
-          console.log("lets goo");
           return {
             type: "sourceFile",
             filePath: getVirtualModuleByName(moduleName).path,
