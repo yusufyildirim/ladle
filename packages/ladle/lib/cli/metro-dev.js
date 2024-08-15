@@ -14,6 +14,7 @@ import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import { appRoot, projectPublicDir, projectRoot } from "./metro/utils.js";
 import importFrom from "import-from";
+import cleanupWindowsPath from "./vite-plugin/generate/cleanup-windows-path.js";
 const express = importFrom(projectRoot, "express");
 
 /**
@@ -56,6 +57,7 @@ const bundler = async (ladleConfig, configFolder) => {
     }
 
     // Serve HTML
+    // TODO: Add config.appendToHead support.
     const html = createHTMLTemplate({
       assets: [{ type: "css", filename: "assets/ladle.css" }],
       bundleUrl:
@@ -103,14 +105,51 @@ const bundler = async (ladleConfig, configFolder) => {
     transformOptions,
     fileBuffer,
   ) => {
-    // TODO: Add comment
+    // TODO: Explain what this is all about
     if (!fileBuffer) {
       if (getVirtualModuleByPath(filePath)) {
+        // TODO: Don't regenerate the hole thing every time, cache it.
         const code = await getVirtualModuleByPath(filePath).getContent(
           ladleConfig,
           configFolder,
         );
         fileBuffer = Buffer.from(code);
+      }
+      // Patch stories
+      // Copied and adapted from: vite-plugin.js
+      else if (filePath.includes(".stories.")) {
+        const { getSource } = await originalTransformFile(
+          filePath,
+          transformOptions,
+          fileBuffer,
+        );
+        const code = getSource().toString();
+        const from = cleanupWindowsPath(
+          path.join(projectRoot, "src/story-hmr"),
+        );
+        const watcherImport = `import { storyUpdated } from "${from}";`;
+        // if stories are defined through .bind({}) we need to force full reloads since
+        // react-refresh can't pick it up
+        // const invalidateHmr = code.includes(".bind({})")
+        //   ? `if (import.meta.hot) {
+        //   import.meta.hot.on("vite:beforeUpdate", () => {
+        //     import.meta.hot.invalidate();
+        //   });
+        // }`
+        //   : "";
+
+        // make sure the `loaded` attr is set even if the story is loaded through iframe
+        const setLoadedAttr = `typeof window !== 'undefined' &&
+          window.document &&
+          window.document.createElement && document.documentElement.setAttribute("data-storyloaded", "");`;
+
+        fileBuffer = Buffer.from(
+          `${code}\n${setLoadedAttr}\n${watcherImport}\nif (module.hot) {
+          module.hot.accept(() => {
+            storyupdated();
+          });
+        }`,
+        );
       }
     }
 

@@ -2,10 +2,11 @@ import path from "path";
 import fs from "fs";
 import importFrom from "import-from";
 
-import { getBaseMetroConfig, entryFilePath } from "./metro-base.js";
+import { entryFilePath } from "./metro-base.js";
 import { fileURLToPath } from "url";
 import metroDev from "./metro-dev.js";
 import { createHTMLTemplate } from "./metro/prepare-assets.js";
+import { projectPublicDir } from "./metro/utils.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = process.cwd();
@@ -24,7 +25,6 @@ function prepareOutDir() {
 
   // Create assetsDir
   fs.mkdirSync(assetsDir, { recursive: true });
-  console.log("Cleaned up the output directory.");
 }
 
 /**
@@ -47,7 +47,6 @@ const metroProd = async (ladleConfig, configFolder) => {
 
     const { metroServer } = await metroDev(ladleConfig, configFolder);
     const bundle = await metroServer.build({
-      // entry: "./node_modules/@ladle/react/lib/app/src/index.tsx",
       ...Server.DEFAULT_BUNDLE_OPTIONS,
       entryFile: path.relative(projectRoot, entryFilePath),
       dev: false,
@@ -67,6 +66,12 @@ const metroProd = async (ladleConfig, configFolder) => {
     });
 
     // Manually copy/write assets
+
+    // Copy the files under project's public dir
+    if (fs.existsSync(projectPublicDir)) {
+      fs.cpSync(projectPublicDir, outDir, { recursive: true });
+    }
+
     fs.writeFileSync(path.resolve(assetsDir, "ladle.js"), bundle.code);
     fs.writeFileSync(path.resolve(outDir, "index.html"), html);
     fs.copyFileSync(cssFile, path.resolve(assetsDir, "ladle.css"));
