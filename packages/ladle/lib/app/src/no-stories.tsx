@@ -1,4 +1,4 @@
-import { config } from "virtual:generated-list";
+import { config } from "virtual:config";
 import { Code, Link } from "./ui";
 
 const NoStories = () => (

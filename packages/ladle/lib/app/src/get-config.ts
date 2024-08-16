@@ -1,10 +1,8 @@
 import merge from "lodash.merge";
-// import { config, stories } from "virtual:generated-list";
 import { config } from "virtual:config";
 import defaultConfig from "../../shared/default-config";
 import type { Config } from "../../shared/types";
 import debug from "./debug";
-import { sortStories } from "./story-name";
 
 if (Object.keys(config).length === 0) {
   debug("No custom config found.");

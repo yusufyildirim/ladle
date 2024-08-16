@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import getAppRoot from "./get-app-root.js";
 import {

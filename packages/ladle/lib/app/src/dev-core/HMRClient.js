@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import MetroHMRClient from "metro-runtime/src/modules/HMRClient";
 import getDevServer from "./getDevServer";
 

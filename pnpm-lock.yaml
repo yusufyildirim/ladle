@@ -4,7 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-pnpmfileChecksum: f3wr2erio7surag22nfwm6hzxi
+pnpmfileChecksum: zhd6wit77ffcyhd2ykpii753s4
 
 importers:
 
@@ -71,7 +71,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -111,7 +111,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -148,7 +148,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -200,7 +200,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -234,7 +234,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -271,7 +271,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -314,7 +314,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -348,7 +348,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -400,7 +400,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -449,7 +449,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -483,7 +483,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -517,7 +517,7 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))
       '@ladle/react':
-        specifier: workspace:@ladle/react-native@*
+        specifier: workspace:ladle-react-native@*
         version: link:../ladle
       expo:
         specifier: ^51.0.26

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import fs from "fs";
 import { parse } from "url";
 import { Buffer } from "buffer";

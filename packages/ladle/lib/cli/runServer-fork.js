@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import http from "http";
 import https from "https";
 import { parse } from "url";

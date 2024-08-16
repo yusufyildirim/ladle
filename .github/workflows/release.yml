@@ -38,10 +38,11 @@ jobs:
       - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
-            email=vojtech@miksu.cz
+            email=$NPM_EMAIL
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
         env:
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Release Pull Request or Publish to npm
@@ -50,7 +51,7 @@ jobs:
         with:
           publish: pnpm release
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publishing next version

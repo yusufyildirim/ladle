@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import importFrom from "import-from";
 import path from "path";
 import resolveFrom from "resolve-from";

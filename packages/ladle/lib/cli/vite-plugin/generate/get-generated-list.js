@@ -20,11 +20,11 @@ export const errorMessage = '';\n
 };
 
 /**
- * @param entryData {import('../../../shared/types').EntryData}
+ * @param _entryData {import('../../../shared/types').EntryData}
  * @param configFolder {string}
  * @param config {import("../../../shared/types").Config}
  */
-export const getConfig = async (entryData, configFolder, config) => {
+export const getConfig = async (_entryData, configFolder, config) => {
   return `
 ${await getConfigImport(configFolder, config)}
 `;
