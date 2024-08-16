@@ -21,7 +21,7 @@ const express = importFrom(projectRoot, "express");
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
  */
-const bundler = async (ladleConfig, configFolder) => {
+const metroDev = async (ladleConfig, configFolder) => {
   /**
    * Middleware for handling the index page request.
    * @param {import('express').Request} req - The Express request object.
@@ -56,9 +56,21 @@ const bundler = async (ladleConfig, configFolder) => {
       return;
     }
 
+    // Prep <head>
+    let appendToHead = "";
+
+    const headHtmlPath = path.join(configFolder, "head.html");
+    if (fs.existsSync(headHtmlPath)) {
+      appendToHead = fs.readFileSync(headHtmlPath, "utf8");
+    }
+    if (ladleConfig.appendToHead) {
+      appendToHead += ladleConfig.appendToHead;
+    }
+
     // Serve HTML
     // TODO: Add config.appendToHead support.
     const html = createHTMLTemplate({
+      appendToHead,
       assets: [{ type: "css", filename: "assets/ladle.css" }],
       bundleUrl:
         "node_modules/@ladle/react/lib/app/src/index.bundle?platform=web&amp;dev=true&amp;hot=false&amp;lazy=true&amp;transform.engine=hermes&amp;transform.routerRoot=app",
@@ -86,7 +98,10 @@ const bundler = async (ladleConfig, configFolder) => {
       // Serve Ladle specific stuff
       ladleMiddleware,
     ],
+
+    // Prod stuff
     watch: !process.env.LADLE_BUILD,
+    metroServerOnly: process.env.LADLE_BUILD,
   });
 
   if (!process.env.LADLE_BUILD) {
@@ -159,4 +174,4 @@ const bundler = async (ladleConfig, configFolder) => {
   return { metroServer, metroBundler };
 };
 
-export default bundler;
+export default metroDev;

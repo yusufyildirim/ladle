@@ -29,6 +29,8 @@ export const runServer = async (
     waitForBundler = false,
     websocketEndpoints = {},
     watch,
+    // Our patch
+    metroServerOnly,
   },
 ) => {
   // await earlyPortCheck(host, config.server.port);
@@ -75,6 +77,12 @@ export const runServer = async (
   } else {
     httpServer = http.createServer(serverApp);
   }
+
+  // Our patch for "build" process
+  if (metroServerOnly) {
+    return Promise.resolve({ metroServer });
+  }
+
   return new Promise((resolve, reject) => {
     httpServer.on("error", (error) => {
       if (onError) {

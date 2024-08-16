@@ -9,7 +9,7 @@ function getBaseHTMLTemplate() {
   return template;
 }
 
-export function createHTMLTemplate({ assets, bundleUrl }) {
+export function createHTMLTemplate({ assets, bundleUrl, appendToHead }) {
   const template = getBaseHTMLTemplate();
 
   const styleString = assets
@@ -26,6 +26,6 @@ export function createHTMLTemplate({ assets, bundleUrl }) {
   const scriptsString = `<script src="/${bundleUrl}" defer></script>`;
 
   return template
-    .replace("</head>", `${styleString}</head>`)
+    .replace("</head>", `${appendToHead}${styleString}</head>`)
     .replace("</body>", `${scriptsString}\n</body>`);
 }
