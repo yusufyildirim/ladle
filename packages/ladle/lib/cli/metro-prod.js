@@ -4,7 +4,7 @@ import importFrom from "import-from";
 
 import { entryFilePath } from "./metro-base.js";
 import { fileURLToPath } from "url";
-import metroDev from "./metro-dev.js";
+import metroDev, { getExtraHeaderStuff } from "./metro-dev.js";
 import { createHTMLTemplate } from "./metro/prepare-assets.js";
 import { projectPublicDir } from "./metro/utils.js";
 
@@ -61,6 +61,7 @@ const metroProd = async (ladleConfig, configFolder) => {
     });
 
     const html = createHTMLTemplate({
+      appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
       bundleUrl: "assets/ladle.js",
       assets: [{ type: "css", filename: "assets/ladle.css" }],
     });

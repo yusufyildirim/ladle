@@ -21,6 +21,23 @@ const express = importFrom(projectRoot, "express");
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
  */
+export function getExtraHeaderStuff(ladleConfig, configFolder) {
+  let appendToHead = "";
+
+  const headHtmlPath = path.join(configFolder, "head.html");
+  if (fs.existsSync(headHtmlPath)) {
+    appendToHead = fs.readFileSync(headHtmlPath, "utf8");
+  }
+  if (ladleConfig.appendToHead) {
+    appendToHead += ladleConfig.appendToHead;
+  }
+
+  return appendToHead;
+}
+/**
+ * @param ladleConfig {import("../shared/types").Config}
+ * @param configFolder {string}
+ */
 const metroDev = async (ladleConfig, configFolder) => {
   /**
    * Middleware for handling the index page request.
@@ -56,21 +73,10 @@ const metroDev = async (ladleConfig, configFolder) => {
       return;
     }
 
-    // Prep <head>
-    let appendToHead = "";
-
-    const headHtmlPath = path.join(configFolder, "head.html");
-    if (fs.existsSync(headHtmlPath)) {
-      appendToHead = fs.readFileSync(headHtmlPath, "utf8");
-    }
-    if (ladleConfig.appendToHead) {
-      appendToHead += ladleConfig.appendToHead;
-    }
-
     // Serve HTML
     // TODO: Add config.appendToHead support.
     const html = createHTMLTemplate({
-      appendToHead,
+      appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
       assets: [{ type: "css", filename: "assets/ladle.css" }],
       bundleUrl:
         "node_modules/@ladle/react/lib/app/src/index.bundle?platform=web&amp;dev=true&amp;hot=false&amp;lazy=true&amp;transform.engine=hermes&amp;transform.routerRoot=app",
