@@ -8,7 +8,10 @@ import { runServer } from "./runServer-fork.js";
 import openBrowser from "./open-browser.js";
 import { getBaseMetroConfig } from "./metro-base.js";
 import { getVirtualModuleByPath } from "./metro-virtual-mods.js";
-import { createHTMLTemplate } from "./metro/prepare-assets.js";
+import {
+  createHTMLTemplate,
+  getExtraHeaderStuff,
+} from "./metro/prepare-assets.js";
 import { globby } from "globby";
 import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
@@ -17,23 +20,6 @@ import importFrom from "import-from";
 import cleanupWindowsPath from "./vite-plugin/generate/cleanup-windows-path.js";
 const express = importFrom(projectRoot, "express");
 
-/**
- * @param ladleConfig {import("../shared/types").Config}
- * @param configFolder {string}
- */
-export function getExtraHeaderStuff(ladleConfig, configFolder) {
-  let appendToHead = "";
-
-  const headHtmlPath = path.join(configFolder, "head.html");
-  if (fs.existsSync(headHtmlPath)) {
-    appendToHead = fs.readFileSync(headHtmlPath, "utf8");
-  }
-  if (ladleConfig.appendToHead) {
-    appendToHead += ladleConfig.appendToHead;
-  }
-
-  return appendToHead;
-}
 /**
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
@@ -74,10 +60,10 @@ const metroDev = async (ladleConfig, configFolder) => {
     }
 
     // Serve HTML
-    // TODO: Add config.appendToHead support.
     const html = createHTMLTemplate({
       appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
       assets: [{ type: "css", filename: "assets/ladle.css" }],
+      // TODO: Shouldn't be hardcoded
       bundleUrl:
         "node_modules/@ladle/react/lib/app/src/index.bundle?platform=web&amp;dev=true&amp;hot=false&amp;lazy=true&amp;transform.engine=hermes&amp;transform.routerRoot=app",
     });
@@ -95,7 +81,7 @@ const metroDev = async (ladleConfig, configFolder) => {
   const serverUrl = `${useHttps ? "https" : "http"}://${hostname}:${port}`;
 
   const metroConfig = await getBaseMetroConfig(port, ladleConfig);
-  const { metroServer, httpServer } = await runServer(metroConfig, {
+  const { metroServer } = await runServer(metroConfig, {
     host: hostname,
     unstable_extraMiddleware: [
       // Serve static assets from project's /public dir
@@ -149,15 +135,6 @@ const metroDev = async (ladleConfig, configFolder) => {
           path.join(projectRoot, "src/story-hmr"),
         );
         const watcherImport = `import { storyUpdated } from "${from}";`;
-        // if stories are defined through .bind({}) we need to force full reloads since
-        // react-refresh can't pick it up
-        // const invalidateHmr = code.includes(".bind({})")
-        //   ? `if (import.meta.hot) {
-        //   import.meta.hot.on("vite:beforeUpdate", () => {
-        //     import.meta.hot.invalidate();
-        //   });
-        // }`
-        //   : "";
 
         // make sure the `loaded` attr is set even if the story is loaded through iframe
         const setLoadedAttr = `typeof window !== 'undefined' &&

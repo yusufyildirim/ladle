@@ -21,12 +21,6 @@ if (config?.addons?.width?.options) {
   defaultConfig.addons.width.options = {};
 }
 const mergedConfig: Config = merge(defaultConfig, config);
-// if (mergedConfig.defaultStory === "") {
-//   mergedConfig.defaultStory = sortStories(
-//     Object.keys(stories),
-//     mergedConfig.storyOrder,
-//   )[0];
-// }
 
 // don't merge hotkeys
 mergedConfig.hotkeys = {
