@@ -1,8 +1,8 @@
 {
-  "name": "@ladle/react",
-  "version": "4.1.0",
-  "repository": "git@github.com:tajo/ladle.git",
-  "author": "Vojtech Miksu <vojtech@miksu.cz>",
+  "name": "@ladle/react-native",
+  "version": "0.0.1",
+  "repository": "git@github.com:yusufyildirim/ladle-react-native.git",
+  "author": "Yusuf YILDIRIM <yusuf@tinythin.gs>",
   "license": "MIT",
   "type": "module",
   "types": "./lib/app/exports.d.ts",
@@ -106,4 +106,3 @@
     "node": ">=20.0.0"
   }
 }
-

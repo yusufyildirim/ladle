@@ -4,6 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+pnpmfileChecksum: f3wr2erio7surag22nfwm6hzxi
+
 importers:
 
   .:
@@ -69,7 +71,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -80,6 +82,12 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       query-string:
         specifier: ^9.0.0
         version: 9.0.0
@@ -89,6 +97,13 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/babel:
     dependencies:
@@ -96,7 +111,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -107,12 +122,25 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/baseweb:
     dependencies:
@@ -120,7 +148,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -134,6 +162,12 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -152,6 +186,13 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/config:
     dependencies:
@@ -159,7 +200,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -167,12 +208,25 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/config-ts:
     dependencies:
@@ -180,7 +234,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -188,12 +242,28 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
+      babel-plugin-module-resolver:
+        specifier: ^5.0.2
+        version: 5.0.2
 
   e2e/css:
     dependencies:
@@ -201,7 +271,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -212,6 +282,12 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -224,6 +300,13 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/decorators:
     dependencies:
@@ -231,7 +314,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -239,12 +322,25 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/msw:
     dependencies:
@@ -252,7 +348,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -266,6 +362,12 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -284,6 +386,13 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/playwright:
     dependencies:
@@ -291,7 +400,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -302,6 +411,12 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -314,6 +429,13 @@ importers:
       sync-fetch:
         specifier: ^0.5.2
         version: 0.5.2
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/playwright-config:
     dependencies:
@@ -327,7 +449,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -335,12 +457,25 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   e2e/provider:
     dependencies:
@@ -348,7 +483,7 @@ importers:
         specifier: workspace:*
         version: link:../playwright-config
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../../packages/ladle
       '@playwright/test':
         specifier: ^1.44.1
@@ -356,12 +491,25 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      expo:
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      metro-runtime:
+        specifier: ^0.80.10
+        version: 0.80.10
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.24.0
+        version: 7.24.0
+      '@babel/runtime':
+        specifier: 7.24.0
+        version: 7.24.0
 
   packages/example:
     dependencies:
@@ -369,11 +517,11 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))
       '@ladle/react':
-        specifier: workspace:*
+        specifier: workspace:@ladle/react-native@*
         version: link:../ladle
       expo:
-        specifier: ^51.0.25
-        version: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+        specifier: ^51.0.26
+        version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
       metro-runtime:
         specifier: ^0.80.10
         version: 0.80.10
@@ -1993,10 +2141,10 @@ packages:
 
   '@expo/bunyan@4.0.1':
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {node: '>=0.10.0'}
+    engines: {'0': node >=0.10.0}
 
-  '@expo/cli@0.18.27':
-    resolution: {integrity: sha512-YPHp0B7tF2cMb/pEJr1d23g2w+CXND1p8sApeIyNaR37/WhCKWM6FpAiQrxubD1i4d74f6U9wfJbayiI/wKlmQ==}
+  '@expo/cli@0.18.29':
+    resolution: {integrity: sha512-X810C48Ss+67RdZU39YEO1khNYo1RmjouRV+vVe0QhMoTe8R6OA3t+XYEdwaNbJ5p/DJN7szfHfNmX2glpC7xg==}
     hasBin: true
 
   '@expo/code-signing-certificates@0.0.5':
@@ -2023,8 +2171,8 @@ packages:
   '@expo/json-file@8.3.3':
     resolution: {integrity: sha512-eZ5dld9AD0PrVRiIWpRkm5aIoWBw3kAyd8VkuWEy92sEthBKDDDHAnK2a0dw0Eil6j7rK7lS/Qaq/Zzngv2h5A==}
 
-  '@expo/metro-config@0.18.10':
-    resolution: {integrity: sha512-HTYQqKfV0JSuRp5aDvrPHezj5udXOWoXqHOjfTSnce2m13j6D0yYXTJNaKRhlgpPBrkg5DL7z1fL3zwDUpLM4w==}
+  '@expo/metro-config@0.18.11':
+    resolution: {integrity: sha512-/uOq55VbSf9yMbUO1BudkUM2SsGW1c5hr9BnhIqYqcsFv0Jp5D3DtJ4rljDKaUeNLbwr6m7pqIrkSMq5NrYf4Q==}
 
   '@expo/metro-runtime@3.2.1':
     resolution: {integrity: sha512-L7xNo5SmK+rcuXDm/+VBBImpA7FZsVB+m/rNr3fNl5or+1+yrZe99ViF7LZ8DOoVqAqcb4aCAXvGrP2JNYo1/Q==}
@@ -3368,6 +3516,9 @@ packages:
   babel-plugin-dynamic-import-node@2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
 
+  babel-plugin-module-resolver@5.0.2:
+    resolution: {integrity: sha512-9KtaCazHee2xc0ibfqsDeamwDps6FZNo5S0Q81dUqEuFzVwPhcT4J5jOqIVvgCA3Q/wO9hKYxN/Ds3tIsp5ygg==}
+
   babel-plugin-polyfill-corejs2@0.4.11:
     resolution: {integrity: sha512-sMEJ27L0gRHShOh5G54uAAPaiCOygY/5ratXuiyb2G46FmlSpc9eFCzYVyDiPxfNbwzA7mYahmjQc5q+CZQ09Q==}
     peerDependencies:
@@ -3392,8 +3543,8 @@ packages:
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
 
-  babel-preset-expo@11.0.13:
-    resolution: {integrity: sha512-5oUXyxnIVyDUhG4a306PpT2c9HhKx0tG4LXjpSIA/dERzwGvU8LUxDSD6yCohhRSsPZIoR7u2mnH0PypqFqYnQ==}
+  babel-preset-expo@11.0.14:
+    resolution: {integrity: sha512-4BVYR0Sc2sSNxYTiE/OLSnPiOp+weFNy8eV+hX3aD6YAIbBnw+VubKRWqJV/sOJauzOLz0SgYAYyFciYMqizRA==}
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -4864,15 +5015,15 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-modules-autolinking@1.11.1:
-    resolution: {integrity: sha512-2dy3lTz76adOl7QUvbreMCrXyzUiF8lygI7iFJLjgIQIVH+43KnFWE5zBumpPbkiaq0f0uaFpN9U0RGQbnKiMw==}
+  expo-modules-autolinking@1.11.2:
+    resolution: {integrity: sha512-fdcaNO8ucHA3yLNY52ZUENBcAG7KEx8QyMmnVNavO1JVBGRMZG8JyVcbrhYQDtVtpxkbai5YzwvLutINvbDZDQ==}
     hasBin: true
 
-  expo-modules-core@1.12.20:
-    resolution: {integrity: sha512-CCXjlgT8lDAufgt912P1W7TwD+KAylfIttc1Doh1a0hAfkdkUsDRmrgthnYrrxEo2ECVpbaB71Epp1bnZ1rRrA==}
+  expo-modules-core@1.12.21:
+    resolution: {integrity: sha512-UQxRljqPcowS1+bECW9tnuVGfvWL18GAKPiKMnu9sZwJssAN9FU/JhED50DJzdzICLR0hL17FZAgV4rbMG3IWQ==}
 
-  expo@51.0.25:
-    resolution: {integrity: sha512-hFPj7UQHx3dqmFUZLV89BHfXNSJk7S36+RfoLk7uiApCJ2Ab0V3cKPHu4iQAnFk9hRXvAAiScsBQ1z64sug6VA==}
+  expo@51.0.28:
+    resolution: {integrity: sha512-R+0tSV0Zf5R+DxN4W3mLFlVvYVpiJ+dtYrMmBedIRw0A54we50QRM1jS0Gq2Bdzg2JtainSEApdQXUC6r9j/BA==}
     hasBin: true
 
   exponential-backoff@3.1.1:
@@ -4987,6 +5138,9 @@ packages:
   finalhandler@1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
     engines: {node: '>= 0.8'}
+
+  find-babel-config@2.1.1:
+    resolution: {integrity: sha512-5Ji+EAysHGe1OipH7GN4qDjok5Z1uw5KAwDCbicU/4wyTZY7CqOCzcWbG7J5ad9mazq67k89fXlbc1MuIfl9uA==}
 
   find-cache-dir@2.1.0:
     resolution: {integrity: sha512-Tq6PixE0w/VMFfCgbONnkiQIVol/JJL7nRMi20fqzA4NRs9AfeqMGeRdPi3wIhYkxjeBaWh2rxwapn5Tu3IqOQ==}
@@ -5260,6 +5414,10 @@ packages:
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
+
+  glob@9.3.5:
+    resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
+    engines: {node: '>=16 || 14 >=14.17'}
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -6783,6 +6941,10 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
+  minimatch@8.0.4:
+    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   minimatch@9.0.4:
     resolution: {integrity: sha512-KqWh+VchfxcMNRAJjj2tnsSJdNbHsVgnkBhTNrW7AjVo6OvLtxw8zfT9oLw1JSohlFzJ8jCoTgaoXvJ+kHt6fw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -6808,6 +6970,10 @@ packages:
 
   minipass@3.3.6:
     resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
+    engines: {node: '>=8'}
+
+  minipass@4.2.8:
+    resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
     engines: {node: '>=8'}
 
   minipass@5.0.0:
@@ -8182,6 +8348,9 @@ packages:
 
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+
+  reselect@4.1.8:
+    resolution: {integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==}
 
   resize-observer-polyfill@1.5.1:
     resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
@@ -12625,7 +12794,7 @@ snapshots:
     dependencies:
       uuid: 8.3.2
 
-  '@expo/cli@0.18.27(expo-modules-autolinking@1.11.1)':
+  '@expo/cli@0.18.29(expo-modules-autolinking@1.11.2)':
     dependencies:
       '@babel/runtime': 7.24.0
       '@expo/code-signing-certificates': 0.0.5
@@ -12635,11 +12804,11 @@ snapshots:
       '@expo/env': 0.3.0
       '@expo/image-utils': 0.5.1
       '@expo/json-file': 8.3.3
-      '@expo/metro-config': 0.18.10
+      '@expo/metro-config': 0.18.11
       '@expo/osascript': 2.1.3
       '@expo/package-manager': 1.5.2
       '@expo/plist': 0.1.3
-      '@expo/prebuild-config': 7.0.8(expo-modules-autolinking@1.11.1)
+      '@expo/prebuild-config': 7.0.8(expo-modules-autolinking@1.11.2)
       '@expo/rudder-sdk-node': 1.1.1
       '@expo/spawn-async': 1.7.2
       '@expo/xcpretty': 4.3.1
@@ -12802,7 +12971,7 @@ snapshots:
       json5: 2.2.3
       write-file-atomic: 2.4.3
 
-  '@expo/metro-config@0.18.10':
+  '@expo/metro-config@0.18.11':
     dependencies:
       '@babel/core': 7.24.6
       '@babel/generator': 7.25.0
@@ -12855,7 +13024,7 @@ snapshots:
       base64-js: 1.5.1
       xmlbuilder: 14.0.0
 
-  '@expo/prebuild-config@7.0.8(expo-modules-autolinking@1.11.1)':
+  '@expo/prebuild-config@7.0.8(expo-modules-autolinking@1.11.2)':
     dependencies:
       '@expo/config': 9.0.3
       '@expo/config-plugins': 8.0.8
@@ -12864,7 +13033,7 @@ snapshots:
       '@expo/json-file': 8.3.3
       '@react-native/normalize-colors': 0.74.85
       debug: 4.3.4
-      expo-modules-autolinking: 1.11.1
+      expo-modules-autolinking: 1.11.2
       fs-extra: 9.1.0
       resolve-from: 5.0.0
       semver: 7.6.2
@@ -14572,6 +14741,14 @@ snapshots:
     dependencies:
       object.assign: 4.1.5
 
+  babel-plugin-module-resolver@5.0.2:
+    dependencies:
+      find-babel-config: 2.1.1
+      glob: 9.3.5
+      pkg-up: 3.1.0
+      reselect: 4.1.8
+      resolve: 1.22.8
+
   babel-plugin-polyfill-corejs2@0.4.11(@babel/core@7.24.0):
     dependencies:
       '@babel/compat-data': 7.24.6
@@ -14630,7 +14807,7 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
 
-  babel-preset-expo@11.0.13(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)):
+  babel-preset-expo@11.0.14(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)):
     dependencies:
       '@babel/plugin-proposal-decorators': 7.24.7(@babel/core@7.24.0)
       '@babel/plugin-transform-export-namespace-from': 7.24.6(@babel/core@7.24.0)
@@ -16326,63 +16503,65 @@ snapshots:
 
   expand-template@2.0.3: {}
 
-  expo-asset@10.0.10(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
+  expo-asset@10.0.10(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
     dependencies:
-      expo: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
-      expo-constants: 16.0.2(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
+      expo: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo-constants: 16.0.2(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
       invariant: 2.2.4
       md5-file: 3.2.3
     transitivePeerDependencies:
       - supports-color
 
-  expo-constants@16.0.2(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
+  expo-constants@16.0.2(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
     dependencies:
       '@expo/config': 9.0.3
       '@expo/env': 0.3.0
-      expo: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
     transitivePeerDependencies:
       - supports-color
 
-  expo-file-system@17.0.1(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
+  expo-file-system@17.0.1(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
     dependencies:
-      expo: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
 
-  expo-font@12.0.9(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
+  expo-font@12.0.9(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
     dependencies:
-      expo: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
       fontfaceobserver: 2.3.0
 
-  expo-keep-awake@13.0.2(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
+  expo-keep-awake@13.0.2(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))):
     dependencies:
-      expo: 51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
 
-  expo-modules-autolinking@1.11.1:
+  expo-modules-autolinking@1.11.2:
     dependencies:
       chalk: 4.1.2
       commander: 7.2.0
       fast-glob: 3.3.2
       find-up: 5.0.0
       fs-extra: 9.1.0
+      require-from-string: 2.0.2
+      resolve-from: 5.0.0
 
-  expo-modules-core@1.12.20:
+  expo-modules-core@1.12.21:
     dependencies:
       invariant: 2.2.4
 
-  expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)):
+  expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)):
     dependencies:
       '@babel/runtime': 7.24.0
-      '@expo/cli': 0.18.27(expo-modules-autolinking@1.11.1)
+      '@expo/cli': 0.18.29(expo-modules-autolinking@1.11.2)
       '@expo/config': 9.0.3
       '@expo/config-plugins': 8.0.8
-      '@expo/metro-config': 0.18.10
+      '@expo/metro-config': 0.18.11
       '@expo/vector-icons': 14.0.2
-      babel-preset-expo: 11.0.13(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
-      expo-asset: 10.0.10(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
-      expo-file-system: 17.0.1(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
-      expo-font: 12.0.9(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
-      expo-keep-awake: 13.0.2(expo@51.0.25(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
-      expo-modules-autolinking: 1.11.1
-      expo-modules-core: 1.12.20
+      babel-preset-expo: 11.0.14(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
+      expo-asset: 10.0.10(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
+      expo-file-system: 17.0.1(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
+      expo-font: 12.0.9(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
+      expo-keep-awake: 13.0.2(expo@51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0)))
+      expo-modules-autolinking: 1.11.2
+      expo-modules-core: 1.12.21
       fbemitter: 3.0.0
       whatwg-url-without-unicode: 8.0.0-3
     transitivePeerDependencies:
@@ -16560,6 +16739,11 @@ snapshots:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+
+  find-babel-config@2.1.1:
+    dependencies:
+      json5: 2.2.3
+      path-exists: 4.0.0
 
   find-cache-dir@2.1.0:
     dependencies:
@@ -16837,6 +17021,13 @@ snapshots:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+
+  glob@9.3.5:
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 8.0.4
+      minipass: 4.2.8
+      path-scurry: 1.11.1
 
   global-directory@4.0.1:
     dependencies:
@@ -18870,6 +19061,10 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
+  minimatch@8.0.4:
+    dependencies:
+      brace-expansion: 2.0.1
+
   minimatch@9.0.4:
     dependencies:
       brace-expansion: 2.0.1
@@ -18897,6 +19092,8 @@ snapshots:
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
+
+  minipass@4.2.8: {}
 
   minipass@5.0.0: {}
 
@@ -20397,6 +20594,8 @@ snapshots:
       resolve: 1.7.1
 
   requires-port@1.0.0: {}
+
+  reselect@4.1.8: {}
 
   resize-observer-polyfill@1.5.1: {}
 
