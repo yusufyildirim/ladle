@@ -1,5 +1,14 @@
 # test-programmatic
 
+## 0.2.98
+
+### Patch Changes
+
+- [`c6c0f17`](https://github.com/tajo/ladle/commit/c6c0f1782d70c73f3dc784e2621a7d83fb6f4f8a) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Implemented Metro bundler support.
+
+- Updated dependencies [[`c6c0f17`](https://github.com/tajo/ladle/commit/c6c0f1782d70c73f3dc784e2621a7d83fb6f4f8a)]:
+  - @ladle/playwright-config@0.2.72
+
 ## 0.2.97
 
 ### Patch Changes

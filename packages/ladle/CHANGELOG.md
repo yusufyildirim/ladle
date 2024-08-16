@@ -1,5 +1,15 @@
 # @ladle/react
 
+## 0.1.0
+
+### Minor Changes
+
+- [`c6c0f17`](https://github.com/tajo/ladle/commit/c6c0f1782d70c73f3dc784e2621a7d83fb6f4f8a) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Implemented Metro bundler support.
+
+### Patch Changes
+
+- [#571](https://github.com/tajo/ladle/pull/571) [`c98d1af`](https://github.com/tajo/ladle/commit/c98d1afbe0f881d4e7db2e4d076522fe9cf5ed1b) Thanks [@wojtekmaj](https://github.com/wojtekmaj)! - Automatically disable http2 when Vite proxy is used
+
 ## 4.1.0
 
 ### Minor Changes
