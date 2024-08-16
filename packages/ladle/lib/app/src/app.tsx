@@ -34,6 +34,12 @@ import {
 } from "./story-name";
 
 const stories = sortStories(Object.keys(unsortedStories), config.storyOrder);
+
+// It shouldn't be here and shouldn't be done this way.
+// That being said, it's ok for now.
+if (config.defaultStory === "") {
+  config.defaultStory = stories[0];
+}
 debug("Stories found", stories);
 
 const getUrlState = (

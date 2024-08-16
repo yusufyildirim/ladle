@@ -16,6 +16,6 @@ test("StorySourceHeader sets a custom source header", async ({ page }) => {
 });
 
 test("meta.json has 3 stories", async ({ request }) => {
-  const meta = await request.get("http://127.0.0.1:61106/meta.json");
+  const meta = await request.get("http://localhost:61106/meta.json");
   expect(Object.keys((await meta.json()).stories).length).toEqual(3);
 });

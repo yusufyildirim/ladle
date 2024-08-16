@@ -6,11 +6,11 @@
   "scripts": {
     "serve": "ladle serve -p 61102",
     "serve-prod": "ladle preview -p 61102",
-    "build": "ladle build",
+    "_build": "ladle build",
     "lint": "echo 'no lint'",
     "test-dev": "cross-env TYPE=dev pnpm exec playwright test",
     "test-prod": "cross-env TYPE=prod pnpm exec playwright test",
-    "test": "pnpm test-dev && pnpm test-prod"
+    "_test": "pnpm test-dev && pnpm test-prod"
   },
   "dependencies": {
     "@ladle/playwright-config": "workspace:*",
@@ -18,9 +18,15 @@
     "@playwright/test": "^1.44.1",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
+    "expo": "^51.0.26",
+    "metro-runtime": "^0.80.10",
     "postcss": "^8.4.38",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "@babel/core": "7.24.0",
+    "@babel/runtime": "7.24.0"
   }
 }

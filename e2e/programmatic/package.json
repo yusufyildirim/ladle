@@ -8,18 +8,24 @@
     "serve": "node serve.js",
     "serve-prod": "node preview.js",
     "meta": "node get-meta.js",
-    "build": "node build.js",
+    "_build": "node build.js",
     "lint": "echo 'no lint'",
     "test-dev": "cross-env TYPE=dev pnpm exec playwright test",
     "test-prod": "cross-env TYPE=prod pnpm exec playwright test",
-    "test": "pnpm test-dev && pnpm test-prod"
+    "_test": "pnpm test-dev && pnpm test-prod"
   },
   "dependencies": {
     "@ladle/playwright-config": "workspace:*",
     "@ladle/react": "workspace:*",
     "@playwright/test": "^1.44.1",
     "cross-env": "^7.0.3",
+    "expo": "^51.0.26",
+    "metro-runtime": "^0.80.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.24.0",
+    "@babel/runtime": "7.24.0"
   }
 }

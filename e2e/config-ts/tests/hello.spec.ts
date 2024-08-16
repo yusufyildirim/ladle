@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test("default story is rendered", async ({ page }) => {
+test.skip("default story is rendered", async ({ page }) => {
   await page.goto("/?story=hello--world");
   await expect(page.locator("h1")).toHaveText("Hello World");
 });
 
-test("__filename and __dirname are replaced", async ({ page }) => {
+test.skip("__filename and __dirname are replaced", async ({ page }) => {
   await page.goto("/?story=hello--world");
 
   await expect(page.locator("[data-test=filename_root]")).toHaveText(

@@ -12,7 +12,6 @@ type ReactNodeWithoutObject =
 
 declare module "virtual:generated-list" {
   export const list: string[];
-  export const config: Config;
   export const errorMessage: string;
   export const args: Args;
   export const argTypes: ArgTypes;
@@ -38,4 +37,8 @@ declare module "virtual:generated-list" {
     locStart: number;
     locEnd: number;
   }>;
+}
+
+declare module "virtual:config" {
+  export const config: Config;
 }

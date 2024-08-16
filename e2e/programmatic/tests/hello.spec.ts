@@ -42,7 +42,7 @@ test("getMeta export returns JS object identical to `meta.json` ", async () => {
 });
 
 test("meta.json has a single story ok", async ({ request }) => {
-  const meta = await request.get("http://127.0.0.1:61105/meta.json");
+  const meta = await request.get("http://localhost:61105/meta.json");
   expect(await meta.json()).toEqual(
     expect.objectContaining({
       about: {

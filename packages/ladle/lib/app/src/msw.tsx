@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { RequestHandler } from "msw";
+import { setupWorker } from "msw/browser";
 
 const Msw = ({
   children,
@@ -12,14 +13,13 @@ const Msw = ({
   React.useEffect(() => {
     const initMsw = async () => {
       if (msw.length > 0) {
-        const { setupWorker } = await import("msw/browser");
         if (!window.__ladle_msw) {
           window.__ladle_msw = setupWorker();
           window.__ladle_msw.use(...msw);
           window.__ladle_msw
             .start({
               serviceWorker: {
-                url: `${(import.meta as any).env.BASE_URL}mockServiceWorker.js`,
+                url: `${(global as any).env.BASE_URL}mockServiceWorker.js`,
               },
             })
             .then(() => {

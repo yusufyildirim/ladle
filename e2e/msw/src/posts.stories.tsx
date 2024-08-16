@@ -4,7 +4,7 @@ import { msw } from "@ladle/react";
 import { fetchData } from "./utils";
 
 // @ts-ignore
-const FETCH_URL = `${import.meta.env.BASE_URL}posts.json`;
+const FETCH_URL = `${global.env.BASE_URL}posts.json`;
 
 export const Mocked: Story = () => {
   const [posts, setPosts] = useState([]);

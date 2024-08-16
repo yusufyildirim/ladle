@@ -4,7 +4,7 @@ export type Settings = {
 };
 
 // @ts-ignore
-const APP_ID = import.meta.env.VITE_LADLE_APP_ID;
+const APP_ID = global.env.VITE_LADLE_APP_ID;
 const storageKey = `ladle-settings-${APP_ID}`;
 const defaultValue = { appId: APP_ID };
 

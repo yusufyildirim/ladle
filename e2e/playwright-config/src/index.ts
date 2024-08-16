@@ -26,11 +26,11 @@ const getPlaywrightConfig = ({
     // Opt out of parallel tests on CI.
     workers: process.env.CI ? 1 : undefined,
     use: {
-      baseURL: `http://127.0.0.1:${port}`,
+      baseURL: `http://localhost:${port}`,
     },
     webServer: {
       command: getCommand(process.env.TYPE),
-      url: `http://127.0.0.1:${port}`,
+      url: `http://localhost:${port}`,
     },
   };
 };
