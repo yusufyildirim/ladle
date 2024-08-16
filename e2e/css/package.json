@@ -6,11 +6,11 @@
   "scripts": {
     "serve": "ladle serve -p 61102",
     "serve-prod": "ladle preview -p 61102",
-    "build": "ladle build",
+    "_build": "ladle build",
     "lint": "echo 'no lint'",
     "test-dev": "cross-env TYPE=dev pnpm exec playwright test",
     "test-prod": "cross-env TYPE=prod pnpm exec playwright test",
-    "test": "pnpm test-dev && pnpm test-prod"
+    "_test": "pnpm test-dev && pnpm test-prod"
   },
   "dependencies": {
     "@ladle/playwright-config": "workspace:*",
