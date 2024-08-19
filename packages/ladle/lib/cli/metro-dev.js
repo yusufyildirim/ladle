@@ -96,7 +96,7 @@ const metroDev = async (ladleConfig, configFolder) => {
     host: hostname,
     unstable_extraMiddleware: [
       // Serve static assets from project's /public dir
-      express.static(projectPublicDir),
+      express.static(projectPublicDir, { index: false }),
 
       // Serve Ladle specific stuff
       ladleMiddleware,
