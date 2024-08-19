@@ -142,10 +142,6 @@ const metroDev = async (ladleConfig, configFolder) => {
           fileBuffer,
         );
         const code = getSource().toString();
-        const from = cleanupWindowsPath(
-          path.join(projectRoot, "src/story-hmr"),
-        );
-        const watcherImport = `import { storyUpdated } from "${from}";`;
 
         // make sure the `loaded` attr is set even if the story is loaded through iframe
         const setLoadedAttr = `typeof window !== 'undefined' &&
@@ -153,11 +149,8 @@ const metroDev = async (ladleConfig, configFolder) => {
           window.document.createElement && document.documentElement.setAttribute("data-storyloaded", "");`;
 
         fileBuffer = Buffer.from(
-          `${code}\n${setLoadedAttr}\n${watcherImport}\nif (module.hot) {
-          module.hot.accept(() => {
-            storyupdated();
-          });
-        }`,
+          `${code}\n${setLoadedAttr}
+        `,
         );
       }
     }

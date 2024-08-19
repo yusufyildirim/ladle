@@ -39,6 +39,9 @@ export function createBundleUrlSearchParams(options) {
   const queryParams = new URLSearchParams({
     platform: encodeURIComponent(platform),
     dev: String(dev),
+
+    // Just to silence the error for Expo users
+    "transform.routerRoot": "app",
   });
 
   // Lazy bundling must be disabled for bundle splitting to work.

@@ -5,6 +5,7 @@ import { watchers } from "../story-hmr";
 import { A11y } from "../icons";
 import { Modal, Code } from "../ui";
 import type { AddonProps } from "../../../shared/types";
+import axe from "axe-core";
 
 type ViolationT = {
   id: string;
@@ -21,11 +22,8 @@ const runAxe = async (
   setReportFinished: React.Dispatch<React.SetStateAction<boolean>>,
   el: HTMLElement | null,
 ) => {
-  const axe = await import("axe-core");
   try {
-    const results = await axe.default.run(
-      document.getElementsByTagName("main") as any,
-    );
+    const results = await axe.run(document.getElementsByTagName("main") as any);
     setViolations(results.violations as ViolationsT);
     setReportFinished(true);
     if (el) el.setAttribute("aria-hidden", "true");
