@@ -133,26 +133,6 @@ const metroDev = async (ladleConfig, configFolder) => {
         );
         fileBuffer = Buffer.from(code);
       }
-      // Patch stories
-      // Copied and adapted from: vite-plugin.js
-      else if (filePath.includes(".stories.")) {
-        const { getSource } = await originalTransformFile(
-          filePath,
-          transformOptions,
-          fileBuffer,
-        );
-        const code = getSource().toString();
-
-        // make sure the `loaded` attr is set even if the story is loaded through iframe
-        const setLoadedAttr = `typeof window !== 'undefined' &&
-          window.document &&
-          window.document.createElement && document.documentElement.setAttribute("data-storyloaded", "");`;
-
-        fileBuffer = Buffer.from(
-          `${code}\n${setLoadedAttr}
-        `,
-        );
-      }
     }
 
     return originalTransformFile(filePath, transformOptions, fileBuffer);

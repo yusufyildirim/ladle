@@ -27,6 +27,7 @@ const StoryFrame = ({
   story: string;
 }) => {
   if ((!active && width === 0) || mode === ModeState.Preview) return children;
+
   return (
     <Frame
       title={`Story ${story}`}
@@ -96,47 +97,44 @@ const Story = ({
 
   return (
     <ErrorBoundary>
-      <React.Suspense fallback={<Ring />}>
-        <StoryFrame
-          active={iframeActive}
-          story={globalState.story}
+      <StoryFrame
+        active={iframeActive}
+        story={globalState.story}
+        width={width}
+        mode={globalState.mode}
+      >
+        <SynchronizeHead
+          active={
+            (iframeActive || width > 0) &&
+            globalState.mode !== ModeState.Preview
+          }
+          rtl={globalState.rtl}
           width={width}
-          mode={globalState.mode}
         >
-          <SynchronizeHead
-            active={
-              (iframeActive || width > 0) &&
-              globalState.mode !== ModeState.Preview
-            }
-            rtl={globalState.rtl}
-            width={width}
+          <MDXProvider
+            components={{
+              code: (props) => (
+                <CodeHighlight {...(props as any)} theme={globalState.theme} />
+              ),
+            }}
           >
-            <MDXProvider
-              components={{
-                code: (props) => (
-                  <CodeHighlight
-                    {...(props as any)}
-                    theme={globalState.theme}
-                  />
-                ),
-              }}
+            <Provider
+              config={config}
+              globalState={globalState}
+              dispatch={dispatch}
+              storyMeta={storyDataMeta}
             >
-              <Provider
-                config={config}
-                globalState={globalState}
-                dispatch={dispatch}
-                storyMeta={storyDataMeta}
-              >
+              <React.Suspense fallback={<Ring />}>
                 {storyData ? (
                   React.createElement(storyData.component)
                 ) : (
                   <StoryNotFound activeStory={globalState.story} />
                 )}
-              </Provider>
-            </MDXProvider>
-          </SynchronizeHead>
-        </StoryFrame>
-      </React.Suspense>
+              </React.Suspense>
+            </Provider>
+          </MDXProvider>
+        </SynchronizeHead>
+      </StoryFrame>
     </ErrorBoundary>
   );
 };
