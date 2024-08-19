@@ -43,7 +43,7 @@ export function createHTMLTemplate({ assets, bundleUrl, appendToHead }) {
     )
     .join("");
 
-  const scriptsString = `<script src="/${bundleUrl}" defer></script>`;
+  const scriptsString = `<script src="${bundleUrl}" defer></script>`;
 
   return template
     .replace("</head>", `${appendToHead}${styleString}</head>`)

@@ -17,7 +17,12 @@ import {
 import { globby } from "globby";
 import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
-import { appRoot, projectPublicDir, projectRoot } from "./metro/utils.js";
+import {
+  appRoot,
+  createBundleUrlPath,
+  projectPublicDir,
+  projectRoot,
+} from "./metro/utils.js";
 import importFrom from "import-from";
 import cleanupWindowsPath from "./vite-plugin/generate/cleanup-windows-path.js";
 const express = importFrom(projectRoot, "express");
@@ -66,8 +71,12 @@ const metroDev = async (ladleConfig, configFolder) => {
       appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
       assets: [{ type: "css", filename: "assets/ladle.css" }],
       // TODO: Shouldn't be hardcoded
-      bundleUrl:
-        "node_modules/@ladle/react/lib/app/src/index.bundle?platform=web&amp;dev=true&amp;hot=false&amp;lazy=true&amp;transform.engine=hermes&amp;transform.routerRoot=app",
+      bundleUrl: createBundleUrlPath({
+        mainModuleName: "ladle",
+        lazy: true,
+        dev: true,
+        platform: "web",
+      }),
     });
     res.setHeader("Content-Type", "text/html");
     res.end(html);
