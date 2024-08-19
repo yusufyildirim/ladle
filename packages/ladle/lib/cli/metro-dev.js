@@ -133,33 +133,6 @@ const metroDev = async (ladleConfig, configFolder) => {
         );
         fileBuffer = Buffer.from(code);
       }
-      // Patch stories
-      // Copied and adapted from: vite-plugin.js
-      else if (filePath.includes(".stories.")) {
-        const { getSource } = await originalTransformFile(
-          filePath,
-          transformOptions,
-          fileBuffer,
-        );
-        const code = getSource().toString();
-        const from = cleanupWindowsPath(
-          path.join(projectRoot, "src/story-hmr"),
-        );
-        const watcherImport = `import { storyUpdated } from "${from}";`;
-
-        // make sure the `loaded` attr is set even if the story is loaded through iframe
-        const setLoadedAttr = `typeof window !== 'undefined' &&
-          window.document &&
-          window.document.createElement && document.documentElement.setAttribute("data-storyloaded", "");`;
-
-        fileBuffer = Buffer.from(
-          `${code}\n${setLoadedAttr}\n${watcherImport}\nif (module.hot) {
-          module.hot.accept(() => {
-            storyupdated();
-          });
-        }`,
-        );
-      }
     }
 
     return originalTransformFile(filePath, transformOptions, fileBuffer);
