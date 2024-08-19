@@ -44,7 +44,7 @@ const metroProd = async (ladleConfig, configFolder) => {
   prepareOutDir();
 
   const onProgress = (...args) => {
-    // console.log("Progress...", args);
+    // TODO: Add CLI indicator.
   };
 
   const sourceMap = false;
@@ -66,7 +66,7 @@ const metroProd = async (ladleConfig, configFolder) => {
 
   const html = createHTMLTemplate({
     appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
-    bundleUrl: "assets/ladle.js",
+    bundleUrl: "/assets/ladle.js",
     assets: [{ type: "css", filename: "assets/ladle.css" }],
   });
 
