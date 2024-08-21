@@ -18,6 +18,11 @@ const config = {
       path.resolve(projectRoot, "node_modules"),
       path.resolve(workspaceRoot, "node_modules"),
     ],
+    assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== "svg"),
+    sourceExts: [...defaultConfig.resolver.sourceExts, "svg"],
+  },
+  transformer: {
+    babelTransformerPath: require.resolve("react-native-svg-transformer/expo"),
   },
 };
 

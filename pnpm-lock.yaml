@@ -519,6 +519,9 @@ importers:
       '@ladle/react':
         specifier: workspace:ladle-react-native@*
         version: link:../ladle
+      '@react-native/assets-registry':
+        specifier: ^0.75.2
+        version: 0.75.2
       expo:
         specifier: ^51.0.26
         version: 51.0.28(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))
@@ -534,6 +537,12 @@ importers:
       react-native:
         specifier: ^0.74.5
         version: 0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1)
+      react-native-svg:
+        specifier: ^15.5.0
+        version: 15.5.0(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
+      react-native-svg-transformer:
+        specifier: ^1.5.0
+        version: 1.5.0(react-native-svg@15.5.0(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1))(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(typescript@5.4.5)
       react-native-web:
         specifier: ^0.19.12
         version: 0.19.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2474,6 +2483,10 @@ packages:
     resolution: {integrity: sha512-1XmRhqQchN+pXPKEKYdpJlwESxVomJOxtEnIkbo7GAlaN2sym84fHEGDXAjLilih5GVPpcpSmFzTy8jx3LtaFg==}
     engines: {node: '>=18'}
 
+  '@react-native/assets-registry@0.75.2':
+    resolution: {integrity: sha512-P1dLHjpUeC0AIkDHRYcx0qLMr+p92IPWL3pmczzo6T76Qa9XzruQOYy0jittxyBK91Csn6HHQ/eit8TeXW8MVw==}
+    engines: {node: '>=18'}
+
   '@react-native/babel-plugin-codegen@0.74.87':
     resolution: {integrity: sha512-+vJYpMnENFrwtgvDfUj+CtVJRJuUnzAUYT0/Pb68Sq9RfcZ5xdcCuUgyf7JO+akW2VTBoJY427wkcxU30qrWWw==}
     engines: {node: '>=18'}
@@ -4245,6 +4258,10 @@ packages:
 
   css-selector-parser@3.0.5:
     resolution: {integrity: sha512-3itoDFbKUNx1eKmVpYMFyqKX04Ww9osZ+dLgrk6GEv6KMVeXUhUnp4I5X+evw+u3ZxVU6RFXSSRxlTeMh8bA+g==}
+
+  css-tree@1.1.3:
+    resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
+    engines: {node: '>=8.0.0'}
 
   css-tree@2.2.1:
     resolution: {integrity: sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==}
@@ -6649,6 +6666,9 @@ packages:
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
 
+  mdn-data@2.0.14:
+    resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
+
   mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
 
@@ -7402,6 +7422,9 @@ packages:
   password-prompt@1.1.3:
     resolution: {integrity: sha512-HkrjG2aJlvF0t2BMH0e2LB/EHf3Lcq3fNMzy4GYHcQblAvOl+QQji1Lx7WRBMqpVK8p+KR7bCg7oqAMXtdgqyw==}
 
+  path-dirname@1.0.2:
+    resolution: {integrity: sha512-ALzNPpyNq9AqXMBjeymIjFDAkAFH06mHJH/cSBHAgU0s4vfpBn6b2nf8tiRLvagKD8RbTpq2FKTBg7cl9l3c7Q==}
+
   path-exists@3.0.0:
     resolution: {integrity: sha512-bpC7GYwiDYQ4wYLe+FA8lhRjhQCMcQGuSgGGqDkg/QerRWw9CmGRT0iSOVRSZJ29NMLZgIzqaljJ63oaL4NIJQ==}
     engines: {node: '>=4'}
@@ -8111,6 +8134,18 @@ packages:
 
   react-multi-ref@1.0.2:
     resolution: {integrity: sha512-6oS5yzrZ4UrdMHbF6QAnnaoIe9h8R+Xv4m8uJWVK8/Q4RCc6RTT0XJ/LZ7llVgFcVbnDHeUAcVIhtRgFyzjJpA==}
+
+  react-native-svg-transformer@1.5.0:
+    resolution: {integrity: sha512-RG5fSWJT7mjCQYocgYFUo1KYPLOoypPVG5LQab+pZZO7m4ciGaQIe0mhok3W4R5jLQsEXKo0u+aQGkZV/bZG7w==}
+    peerDependencies:
+      react-native: '>=0.59.0'
+      react-native-svg: '>=12.0.0'
+
+  react-native-svg@15.5.0:
+    resolution: {integrity: sha512-/DUPfmSf3eXt59WjG8hlRKVPzqVjM7duG9vJH6UYAJesj3NtYcyFsO5sYpSkovlOwagk84PibcVb92bBwMSmng==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   react-native-web@0.19.12:
     resolution: {integrity: sha512-o2T0oztoVDQjztt4YksO9S1XRjoH/AqcSvifgWLrPJgGVbMWsfhILgl6lfUdEamVZzZSVV/2gqDVMAk/qq7mZw==}
@@ -9583,6 +9618,9 @@ packages:
 
   walker@1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
+
+  warn-once@0.1.1:
+    resolution: {integrity: sha512-VkQZJbO8zVImzYFteBXvBOZEl1qL175WH8VmZcxF2fZAoudNhNDvHi+doCaAEdU2l2vtcIwa2zn0QK5+I1HQ3Q==}
 
   warning@4.0.3:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
@@ -13492,6 +13530,8 @@ snapshots:
 
   '@react-native/assets-registry@0.74.87': {}
 
+  '@react-native/assets-registry@0.75.2': {}
+
   '@react-native/babel-plugin-codegen@0.74.87(@babel/preset-env@7.24.6(@babel/core@7.24.0))':
     dependencies:
       '@react-native/codegen': 0.74.87(@babel/preset-env@7.24.6(@babel/core@7.24.0))
@@ -15593,6 +15633,11 @@ snapshots:
       nth-check: 2.1.1
 
   css-selector-parser@3.0.5: {}
+
+  css-tree@1.1.3:
+    dependencies:
+      mdn-data: 2.0.14
+      source-map: 0.6.1
 
   css-tree@2.2.1:
     dependencies:
@@ -18499,6 +18544,8 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
+  mdn-data@2.0.14: {}
+
   mdn-data@2.0.28: {}
 
   mdn-data@2.0.30: {}
@@ -19533,6 +19580,8 @@ snapshots:
       ansi-escapes: 4.3.2
       cross-spawn: 7.0.3
 
+  path-dirname@1.0.2: {}
+
   path-exists@3.0.0: {}
 
   path-exists@4.0.0: {}
@@ -20216,6 +20265,26 @@ snapshots:
   react-multi-ref@1.0.2:
     dependencies:
       '@babel/runtime': 7.24.6
+
+  react-native-svg-transformer@1.5.0(react-native-svg@15.5.0(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1))(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(typescript@5.4.5):
+    dependencies:
+      '@svgr/core': 8.1.0(typescript@5.4.5)
+      '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.4.5))
+      '@svgr/plugin-svgo': 8.1.0(@svgr/core@8.1.0(typescript@5.4.5))(typescript@5.4.5)
+      path-dirname: 1.0.2
+      react-native: 0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1)
+      react-native-svg: 15.5.0(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  react-native-svg@15.5.0(react-native@0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      css-select: 5.1.0
+      css-tree: 1.1.3
+      react: 18.3.1
+      react-native: 0.74.5(@babel/core@7.24.0)(@babel/preset-env@7.24.6(@babel/core@7.24.0))(@types/react@18.3.3)(react@18.3.1)
+      warn-once: 0.1.1
 
   react-native-web@0.19.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -21950,6 +22019,8 @@ snapshots:
   walker@1.0.8:
     dependencies:
       makeerror: 1.0.12
+
+  warn-once@0.1.1: {}
 
   warning@4.0.3:
     dependencies:
