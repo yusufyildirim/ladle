@@ -44,7 +44,6 @@ const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
 
     const isBundlerRequest = platformParam === "web";
     const isAssetRequest = req.url.startsWith("/assets/?unstable_path");
-    const isLadleCssRequest = req.url === "/assets/ladle.css";
     const isMetaFile = req.url === "/meta.json";
 
     if (isBundlerRequest) return next();
@@ -61,10 +60,6 @@ const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
 
       res.setHeader("Content-Type", "text/json");
       res.end(meta);
-      return;
-    } else if (isLadleCssRequest) {
-      res.setHeader("Content-Type", "text/css");
-      res.end(fs.readFileSync(path.join(appRoot, "ladle.css")));
       return;
     }
 
