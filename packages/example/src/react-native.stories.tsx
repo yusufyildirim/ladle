@@ -1,5 +1,7 @@
 import { Image } from "react-native";
+// @ts-ignore
 import LadleSvg from "./resources/ladle.svg";
+// @ts-ignore
 import ReactLogo from "./resources/react.png";
 
 export function ShouldResolveImage() {

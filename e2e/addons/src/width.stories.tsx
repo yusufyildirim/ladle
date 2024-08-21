@@ -1,4 +1,6 @@
 import type { Story } from "@ladle/react";
+
+// @ts-ignore
 import styles from "./styles.module.css";
 
 export const Iframed: Story = () => <h1>Iframed</h1>;

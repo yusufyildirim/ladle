@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import fs from "fs";
 import { parse } from "url";
 import { Buffer } from "buffer";
-import path from "path";
 import getPort from "get-port";
 
 import { runServer } from "./runServer-fork.js";
@@ -18,18 +16,17 @@ import { globby } from "globby";
 import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import {
-  appRoot,
   createBundleUrlPath,
   projectPublicDir,
   projectRoot,
 } from "./metro/utils.js";
 import importFrom from "import-from";
-import cleanupWindowsPath from "./vite-plugin/generate/cleanup-windows-path.js";
 const express = importFrom(projectRoot, "express");
 
 /**
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
+ * @param [customMetroConfig] {Object}
  */
 const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
   /**
