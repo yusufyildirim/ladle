@@ -8,4 +8,6 @@ test("css, css modules and postcss are loaded correctly", async ({ page }) => {
   );
   await expect(page.locator("h2")).toHaveCSS("color", "rgb(255, 0, 0)");
   await expect(page.locator("h3")).toHaveCSS("font-size", "36px");
+  await expect(page.locator("h4")).toHaveClass("global-red");
+  await expect(page.locator("h4")).toHaveCSS("color", "rgb(255, 0, 0)");
 });

@@ -1,11 +1,19 @@
-import { View, Text, AppRegistry } from "react-native";
+import React from "react";
+import { View } from "react-native";
+import { registerRootComponent } from "expo";
 
-// Taken from "npm:expo/AppEntry.js" to fix broken "package.main"
-// in Expo template when used in npm workspaces
-// import { registerRootComponent } from "expo";
+import {
+  ShouldResolveImage,
+  ShouldResolveSvg,
+} from "./src/react-native.stories";
 
-AppRegistry.registerComponent(() => (
-  <View>
-    <Text>Test!</Text>
-  </View>
-));
+function App() {
+  return (
+    <View>
+      <ShouldResolveImage />
+      <ShouldResolveSvg />
+    </View>
+  );
+}
+
+registerRootComponent(App);

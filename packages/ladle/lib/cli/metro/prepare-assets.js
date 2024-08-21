@@ -32,18 +32,23 @@ function getBaseHTMLTemplate() {
 export function createHTMLTemplate({ assets, bundleUrl, appendToHead }) {
   const template = getBaseHTMLTemplate();
 
-  const styleString = assets
-    .filter(({ type }) => type === "css")
-    .map(
-      ({ filename }) => `
-          <link rel="preload" href="/${filename}" as="style">
-          <link rel="stylesheet" href="/${filename}">
+  let styleString = "";
+  let scriptsString = "";
 
-          `,
-    )
-    .join("");
+  for (const asset of assets) {
+    if (asset.type === "css") {
+      styleString += `
+          <link rel="preload" href="/${asset.filename}" as="style">
+          <link rel="stylesheet" href="/${asset.filename}">\n
+          `;
+    } else if (asset.type === "js") {
+      scriptsString += `<script src="/${asset.filename}" defer></script>\n`;
+    }
+  }
 
-  const scriptsString = `<script src="${bundleUrl}" defer></script>`;
+  if (bundleUrl) {
+    scriptsString = `<script src="${bundleUrl}" defer></script>`;
+  }
 
   return template
     .replace("</head>", `${appendToHead}${styleString}</head>`)

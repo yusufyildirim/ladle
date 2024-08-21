@@ -10,12 +10,14 @@ import { projectPublicDir, appRoot } from "./metro/utils.js";
 
 const projectRoot = process.cwd();
 const Metro = importFrom(projectRoot, "metro");
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const entryFilePath = path.join(appRoot, "src/index.tsx");
+const { mergeConfig } = importFrom(projectRoot, "@react-native/metro-config");
 
 // App name
 export const mainModuleName = "ladle";
+
+export { mergeConfig };
 
 /**
  * @param {number | undefined} [port]
@@ -25,22 +27,6 @@ export async function getBaseMetroConfig(port, ladleConfig) {
 
   const reactNativePath = resolveFrom(projectRoot, "react-native");
   const userMetroConfig = await Metro.loadConfig();
-
-  const serializer = {
-    ...userMetroConfig.serializer,
-
-    getModulesRunBeforeMainModule() {
-      return [
-        // MUST be first
-        import.meta.resolve(
-          path.join(reactNativePath, "Libraries/Core/InitializeCore"),
-        ),
-        import.meta.resolve(
-          path.join(projectRoot, "@ladle/react/InitalizeReactNative"),
-        ),
-      ];
-    },
-  };
 
   if (ladleConfig.addons.msw.enabled) {
     copyMswWorker(projectPublicDir);
@@ -56,7 +42,6 @@ export async function getBaseMetroConfig(port, ladleConfig) {
       ...userMetroConfig.server,
       port,
     },
-    serializer,
     resolver: {
       ...(userMetroConfig.resolver || {}),
       /**
@@ -89,9 +74,35 @@ export async function getBaseMetroConfig(port, ladleConfig) {
           };
         }
 
+        // Resolve RNW's asset registry to the RN's official one
+        // Required for proper asset resolution.
+        if (
+          platform === "web" &&
+          context.originModulePath.match(
+            /node_modules[\\/]react-native-web[\\/]/,
+          ) &&
+          moduleName.includes("/modules/AssetRegistry")
+        ) {
+          return {
+            type: "sourceFile",
+            filePath: path.resolve(
+              resolveFrom(
+                projectRoot,
+                userMetroConfig.transformer.assetRegistryPath ??
+                  "@react-native/assets-registry/registry.js",
+              ),
+            ),
+          };
+        }
+
         // Fall back to standard resolution for other modules
         return context.resolveRequest(context, moduleName, platform);
       },
+    },
+    transformer: {
+      ...(userMetroConfig.transformer || {}),
+      // Makes Metro use a different asset resolution url format
+      publicPath: "/assets/?unstable_path=.",
     },
   };
 }

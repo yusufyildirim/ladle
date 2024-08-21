@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import fs from "fs";
 import { parse } from "url";
 import { Buffer } from "buffer";
-import path from "path";
 import getPort from "get-port";
 
 import { runServer } from "./runServer-fork.js";
@@ -18,20 +16,19 @@ import { globby } from "globby";
 import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import {
-  appRoot,
   createBundleUrlPath,
   projectPublicDir,
   projectRoot,
 } from "./metro/utils.js";
 import importFrom from "import-from";
-import cleanupWindowsPath from "./vite-plugin/generate/cleanup-windows-path.js";
 const express = importFrom(projectRoot, "express");
 
 /**
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
+ * @param [customMetroConfig] {Object}
  */
-const metroDev = async (ladleConfig, configFolder) => {
+const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
   /**
    * Middleware for handling the index page request.
    * @param {import('express').Request} req - The Express request object.
@@ -43,10 +40,11 @@ const metroDev = async (ladleConfig, configFolder) => {
     const platformParam = url.query?.platform;
 
     const isBundlerRequest = platformParam === "web";
-    const isAssetRequest = req.url === "/assets/ladle.css";
+    const isAssetRequest = req.url.startsWith("/assets/?unstable_path");
     const isMetaFile = req.url === "/meta.json";
 
     if (isBundlerRequest) return next();
+    if (isAssetRequest) return next();
     if (isMetaFile) {
       const entryData = await getEntryData(
         await globby(
@@ -60,16 +58,12 @@ const metroDev = async (ladleConfig, configFolder) => {
       res.setHeader("Content-Type", "text/json");
       res.end(meta);
       return;
-    } else if (isAssetRequest) {
-      res.setHeader("Content-Type", "text/css");
-      res.end(fs.readFileSync(path.join(appRoot, "ladle.css")));
-      return;
     }
 
     // Serve HTML
     const html = createHTMLTemplate({
       appendToHead: getExtraHeaderStuff(ladleConfig, configFolder),
-      assets: [{ type: "css", filename: "assets/ladle.css" }],
+      assets: [],
       // TODO: Shouldn't be hardcoded
       bundleUrl: createBundleUrlPath({
         mainModuleName: "ladle",
@@ -91,7 +85,9 @@ const metroDev = async (ladleConfig, configFolder) => {
   const hostname = ladleConfig.host ?? "localhost";
   const serverUrl = `${useHttps ? "https" : "http"}://${hostname}:${port}`;
 
-  const metroConfig = await getBaseMetroConfig(port, ladleConfig);
+  const metroConfig =
+    customMetroConfig || (await getBaseMetroConfig(port, ladleConfig));
+
   const { metroServer } = await runServer(metroConfig, {
     host: hostname,
     unstable_extraMiddleware: [
