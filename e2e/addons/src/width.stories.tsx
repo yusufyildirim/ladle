@@ -1,5 +1,5 @@
 import type { Story } from "@ladle/react";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 export const Iframed: Story = () => <h1>Iframed</h1>;
 Iframed.meta = {
@@ -8,7 +8,7 @@ Iframed.meta = {
 
 export const NoIframe: Story = () => <h1>No Iframe</h1>;
 
-export const SetCustom: Story = () => <h1>Width set</h1>;
+export const SetCustom: Story = () => <h1 className={styles.h1}>Width set</h1>;
 SetCustom.meta = {
   width: 555,
 };
