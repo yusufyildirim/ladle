@@ -1,5 +1,19 @@
 # @ladle/react
 
+## 0.2.0
+
+### Minor Changes
+
+- [`e3c4666`](https://github.com/tajo/ladle/commit/e3c4666f5add445d7bf5239e47346f04552b0f36) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Added asset resolution support
+
+### Patch Changes
+
+- [`90fb01d`](https://github.com/tajo/ladle/commit/90fb01d6c1f54fefcb69e610a4261443f4b6cc02) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Improved bundle request resolution.
+
+- [`34e16ec`](https://github.com/tajo/ladle/commit/34e16ec51c10a2100742f620dac8b491865214a0) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Simplify storyloaded attribute management
+
+- [`34e16ec`](https://github.com/tajo/ladle/commit/34e16ec51c10a2100742f620dac8b491865214a0) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Ignore index.html inside project public directory
+
 ## 0.1.0
 
 ### Minor Changes
