@@ -2,6 +2,7 @@
 // @ts-nocheck
 import path from "path";
 import fs from "fs/promises";
+import { existsSync } from "fs";
 import importFrom from "import-from";
 
 import { entryFilePath, mergeConfig } from "./metro-base.js";
@@ -35,8 +36,8 @@ const Server = importFrom(projectRoot, "metro/src/Server");
 
 // Helper function to prepare the out dir
 async function prepareOutDir() {
-  if (await fs.access(outDir)) {
-    fs.rmSync(outDir, { recursive: true });
+  if (existsSync(outDir)) {
+    await fs.rm(outDir, { recursive: true });
   }
 
   // Create assetsDir
@@ -128,7 +129,7 @@ const metroProd = async (ladleConfig, configFolder) => {
   const filesToCopy = new Map();
 
   // Copy the files under project's public dir
-  if (await fs.access(projectPublicDir)) {
+  if (existsSync(projectPublicDir)) {
     await fs.cp(projectPublicDir, outDir, { recursive: true });
   }
 
