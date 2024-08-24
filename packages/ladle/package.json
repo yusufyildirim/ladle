@@ -97,6 +97,7 @@
     "@types/koa": "^2.15.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "^20.12.13",
+    "@types/react-refresh": "^0.14.6",
     "@types/ws": "^8.5.10",
     "cross-env": "^7.0.3",
     "react": "^18.3.1",

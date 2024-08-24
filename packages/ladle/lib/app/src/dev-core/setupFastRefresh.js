@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 // This needs to run before the renderer initializes.
 
 const ReactRefreshRuntime = require("react-refresh/runtime");
