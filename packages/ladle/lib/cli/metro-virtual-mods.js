@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
-import getAppRoot from "./get-app-root.js";
 import {
   getConfig,
   getGeneratedList,
 } from "./vite-plugin/generate/get-generated-list.js";
+import { appRoot } from "./metro/utils.js";
 import { globby } from "globby";
 import path from "path";
-
-const appRoot = getAppRoot();
 
 /**
  * @param ladleConfig {import("../shared/types").Config}

@@ -3,17 +3,25 @@
 import { parse } from "url";
 import { Buffer } from "buffer";
 import getPort from "get-port";
+import chokidar from "chokidar";
+import fs from "fs";
 
 import { runServer } from "./runServer-fork.js";
 import openBrowser from "./open-browser.js";
 import { getBaseMetroConfig } from "./metro-base.js";
-import { getVirtualModuleByPath } from "./metro-virtual-mods.js";
+import {
+  getVirtualModuleByName,
+  getVirtualModuleByPath,
+} from "./metro-virtual-mods.js";
 import {
   createHTMLTemplate,
   getExtraHeaderStuff,
 } from "./metro/prepare-assets.js";
 import { globby } from "globby";
-import { getMetaJsonString } from "./vite-plugin/generate/get-meta-json.js";
+import {
+  getMetaJsonString,
+  getMetaJsonObject,
+} from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 import {
   createBundleUrlPath,
@@ -23,12 +31,25 @@ import {
 import importFrom from "import-from";
 const express = importFrom(projectRoot, "express");
 
+const generatedListMod = getVirtualModuleByName("virtual:generated-list");
+
 /**
  * @param ladleConfig {import("../shared/types").Config}
  * @param configFolder {string}
  * @param [customMetroConfig] {Object}
  */
 const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
+  const storiesContent = fs.readFileSync(generatedListMod.path);
+  /**
+   * We serve our modules as virtual modules. Whenever a change occurs,
+   * HMR server expects it as a file change. To make it aware of a potential
+   * module invalidation, this function writes the same content over stories modules path.
+   * This way, Metro applies the necessary changes to the client through HMR.
+   */
+  async function fakeWriteStories() {
+    fs.writeFileSync(generatedListMod.path, storiesContent.toString());
+  }
+
   /**
    * Middleware for handling the index page request.
    * @param {import('express').Request} req - The Express request object.
@@ -107,7 +128,7 @@ const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
     openBrowser(serverUrl);
   }
 
-  const metroBundler = metroServer.getBundler().getBundler();
+  let metroBundler = metroServer.getBundler().getBundler();
   const originalTransformFile = metroBundler.transformFile.bind(metroBundler);
   /**
    * @param {string} filePath
@@ -134,6 +155,45 @@ const metroDev = async (ladleConfig, configFolder, customMetroConfig) => {
     return originalTransformFile(filePath, transformOptions, fileBuffer);
   };
 
+  if (ladleConfig.noWatch === false) {
+    // trigger full reload when new stories are added or removed
+    const watcher = chokidar.watch(ladleConfig.stories, {
+      persistent: true,
+      ignoreInitial: true,
+    });
+    let checkSum = "";
+    const getChecksum = async () => {
+      try {
+        const entryData = await getEntryData(
+          await globby(
+            Array.isArray(ladleConfig.stories)
+              ? ladleConfig.stories
+              : [ladleConfig.stories],
+          ),
+        );
+        const jsonContent = getMetaJsonObject(entryData);
+        // loc changes should not grant a full reload
+        Object.keys(jsonContent.stories).forEach((storyId) => {
+          jsonContent.stories[storyId].locStart = 0;
+          jsonContent.stories[storyId].locEnd = 0;
+        });
+        return JSON.stringify(jsonContent);
+      } catch (e) {
+        return checkSum;
+      }
+    };
+    checkSum = await getChecksum();
+    const invalidate = async () => {
+      const newChecksum = await getChecksum();
+      if (checkSum === newChecksum) return;
+      checkSum = newChecksum;
+      fakeWriteStories();
+    };
+    watcher
+      .on("add", invalidate)
+      .on("change", invalidate)
+      .on("unlink", invalidate);
+  }
   return { metroServer, metroBundler };
 };
 
