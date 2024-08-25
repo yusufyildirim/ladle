@@ -1,5 +1,11 @@
 # @ladle/react
 
+## 0.3.0
+
+### Minor Changes
+
+- [`7578706`](https://github.com/tajo/ladle/commit/757870649fe6ddd6a6d531688e33b1b1dc08b0ae) Thanks [@yusufyildirim](https://github.com/yusufyildirim)! - Made HMR working okay-ish.
+
 ## 0.2.0
 
 ### Minor Changes
